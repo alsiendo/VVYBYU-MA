@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">VVYBYU</string>
+    <string name="login_text">Already have an Account? Login</string>
+    <string name="join_text">Join Now</string>
+</resources>

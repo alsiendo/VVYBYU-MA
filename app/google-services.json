@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "681940065216",
+    "project_id": "vvybyu-28cfc",
+    "storage_bucket": "vvybyu-28cfc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:681940065216:android:856d7db9348e287f370625",
+        "android_client_info": {
+          "package_name": "com.example.vvybyu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "681940065216-bqkc3f80hs7se468f1crp2gsnahonq6r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-xvMwbmFfba4DaMElbMGbl15YxeAQziQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "681940065216-bqkc3f80hs7se468f1crp2gsnahonq6r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
