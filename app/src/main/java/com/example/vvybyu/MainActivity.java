@@ -23,21 +23,21 @@ import io.paperdb.Paper;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button joinNowButton, loginButton;
-    private ProgressDialog loadingbar;
+    private Button joinBtnMain, loginBtnMain;
+    private ProgressDialog loadingBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        joinNowButton = (Button) findViewById(R.id.main_join_btn);
-        loginButton = (Button) findViewById(R.id.main_login_btn);
-        loadingbar = new ProgressDialog(this);
+        joinBtnMain = (Button) findViewById(R.id.joinBtnMain);
+        loginBtnMain = (Button) findViewById(R.id.loginBtn_Main);
+        loadingBar = new ProgressDialog(this);
 
         Paper.init(this);
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
+        loginBtnMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        joinNowButton.setOnClickListener(new View.OnClickListener() {
+        joinBtnMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
@@ -60,10 +60,10 @@ public class MainActivity extends AppCompatActivity {
             if(!TextUtils.isEmpty(UserPhoneKey) && !TextUtils.isEmpty(UserPasswordKey)){
                 AllowAccess(UserPhoneKey, UserPasswordKey);
 
-                loadingbar.setTitle("Already logged in");
-                loadingbar.setMessage("Please wait...");
-                loadingbar.setCanceledOnTouchOutside(false);
-                loadingbar.show();
+                loadingBar.setTitle("Melakukan login");
+                loadingBar.setMessage("Mohon tunggu...");
+                loadingBar.setCanceledOnTouchOutside(false);
+                loadingBar.show();
             }
         }
     }
@@ -76,24 +76,25 @@ public class MainActivity extends AppCompatActivity {
         RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //Cek apakah akun sudah terbuat
                 if(snapshot.child(parentDBName).child(phone).exists()){
                     Users usersData = snapshot.child(parentDBName).child(phone).getValue(Users.class);
-
+                    //Cek noHp-Password
                     if (usersData.getPhone().equals(phone)){
                         if (usersData.getPassword().equals(password)){
-                            Toast.makeText(MainActivity.this, "logged in successfully", Toast.LENGTH_SHORT).show();
-                            loadingbar.dismiss();
+                            Toast.makeText(MainActivity.this, "Login berhasil.", Toast.LENGTH_SHORT).show();
+                            loadingBar.dismiss();
 
                             Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                             startActivity(intent);
                         }else {
-                            loadingbar.dismiss();
-                            Toast.makeText(MainActivity.this, "Password is incorrect", Toast.LENGTH_SHORT).show();
+                            loadingBar.dismiss();
+                            Toast.makeText(MainActivity.this, "Password salah.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }else {
-                    Toast.makeText(MainActivity.this, "Account with this " + phone + " number do not exist.", Toast.LENGTH_SHORT).show();
-                    loadingbar.dismiss();
+                    Toast.makeText(MainActivity.this, "Account dengan nomor" + phone + " belum dibuat.", Toast.LENGTH_SHORT).show();
+                    loadingBar.dismiss();
                 }
             }
 

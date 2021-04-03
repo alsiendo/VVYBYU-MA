@@ -28,70 +28,70 @@ import io.paperdb.Paper;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText InputPhoneNumber, InputPassword;
-    private Button LoginButton;
-    private ProgressDialog loadingbar;
-    private TextView AdminLink, NotAdminLink;
+    private EditText phoneNumberInput_Login, passwordInput_Login;
+    private Button loginBtn_Login;
+    private ProgressDialog loadingBar;
+    private TextView adminLink_Login, userLink_Login;
 
     private String parentDBName = "Users";
-    private CheckBox checkBoxRemmeberMe;
+    private CheckBox rememberCheckbox_Login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        LoginButton = (Button) findViewById(R.id.login_btn);
-        InputPassword = (EditText) findViewById(R.id.login_password_input);
-        InputPhoneNumber = (EditText) findViewById(R.id.login_phone_number_input);
-        AdminLink = (TextView) findViewById(R.id.admin_link);
-        NotAdminLink = (TextView) findViewById(R.id.not_admin_link);
-        loadingbar = new ProgressDialog(this);
+        loginBtn_Login = (Button) findViewById(R.id.loginBtn_Login);
+        passwordInput_Login = (EditText) findViewById(R.id.passwordInput_Login);
+        phoneNumberInput_Login = (EditText) findViewById(R.id.phoneNumberInput_Login);
+        adminLink_Login = (TextView) findViewById(R.id.adminLink_Login);
+        userLink_Login = (TextView) findViewById(R.id.userLink_Login);
+        loadingBar = new ProgressDialog(this);
 
-        checkBoxRemmeberMe = (CheckBox) findViewById(R.id.remember_me_checkbox);
+        rememberCheckbox_Login = (CheckBox) findViewById(R.id.rememberCheckbox_Login);
         Paper.init(this);
 
-        LoginButton.setOnClickListener(new View.OnClickListener() {
+        loginBtn_Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LoginUser();
+                Login();
             }
         });
 
-        AdminLink.setOnClickListener(new View.OnClickListener() {
+        adminLink_Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LoginButton.setText("Login Admin");
-                AdminLink.setVisibility(View.INVISIBLE);
-                NotAdminLink.setVisibility(View.VISIBLE);
+                loginBtn_Login.setText("Login as Admin");
+                adminLink_Login.setVisibility(View.INVISIBLE);
+                userLink_Login.setVisibility(View.VISIBLE);
                 parentDBName = "Admins";
             }
         });
 
-        NotAdminLink.setOnClickListener(new View.OnClickListener() {
+        userLink_Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LoginButton.setText("Login");
-                AdminLink.setVisibility(View.VISIBLE);
-                NotAdminLink.setVisibility(View.INVISIBLE);
+                loginBtn_Login.setText("Login");
+                adminLink_Login.setVisibility(View.VISIBLE);
+                userLink_Login.setVisibility(View.INVISIBLE);
                 parentDBName = "Users";
             }
         });
     }
 
-    private void LoginUser(){
-        String phone = InputPhoneNumber.getText().toString();
-        String password = InputPassword.getText().toString();
+    private void Login(){
+        String phone = phoneNumberInput_Login.getText().toString();
+        String password = passwordInput_Login.getText().toString();
 
         if (TextUtils.isEmpty(phone)){
-            Toast.makeText(this, "Please write your phone number...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Mohon isi nomor telepon anda...", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(password)){
-            Toast.makeText(this, "Please write your password...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Mohon isi password anda...", Toast.LENGTH_SHORT).show();
         } else {
-            loadingbar.setTitle("Login Account");
-            loadingbar.setMessage("Please wait, while we are checking the credentials.");
-            loadingbar.setCanceledOnTouchOutside(false);
-            loadingbar.show();
+            loadingBar.setTitle("Proses Login");
+            loadingBar.setMessage("Mohon menunggu.");
+            loadingBar.setCanceledOnTouchOutside(false);
+            loadingBar.show();
 
             AllowAccessToAccount(phone, password);
         }
@@ -99,7 +99,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void AllowAccessToAccount(String phone, String password){
 
-        if(checkBoxRemmeberMe.isChecked()){
+        if(rememberCheckbox_Login.isChecked()){
             Paper.book().write(Prevalent.UserPhoneKey, phone);
             Paper.book().write(Prevalent.UserPasswordKey, password);
         }
@@ -116,26 +116,27 @@ public class LoginActivity extends AppCompatActivity {
                     if (usersData.getPhone().equals(phone)){
                         if (usersData.getPassword().equals(password)){
                             if (parentDBName.equals("Admins")){
-                                Toast.makeText(LoginActivity.this, "Admin, logged in successfully", Toast.LENGTH_SHORT).show();
-                                loadingbar.dismiss();
+                                Toast.makeText(LoginActivity.this, "Berhasil login sebagai Admin", Toast.LENGTH_SHORT).show();
+                                loadingBar.dismiss();
 
                                 Intent intent = new Intent(LoginActivity.this, AdminAddNewProductActivity.class);
                                 startActivity(intent);
                             }else if (parentDBName.equals("Users")){
-                                Toast.makeText(LoginActivity.this, "User, logged in successfully", Toast.LENGTH_SHORT).show();
-                                loadingbar.dismiss();
+                                Toast.makeText(LoginActivity.this, "Berhasil login sebagai User", Toast.LENGTH_SHORT).show();
+                                loadingBar.dismiss();
 
                                 Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                                 startActivity(intent);
                             }
                         }else {
-                            loadingbar.dismiss();
-                            Toast.makeText(LoginActivity.this, "Password is incorrect", Toast.LENGTH_SHORT).show();
+                            loadingBar.dismiss();
+                            Toast.makeText(LoginActivity.this, "Password salah.", Toast.LENGTH_SHORT).show();
                         }
                     }
-                }else {
-                    Toast.makeText(LoginActivity.this, "Account with this " + phone + " number do not exist.", Toast.LENGTH_SHORT).show();
-                    loadingbar.dismiss();
+                }
+                else {
+                    Toast.makeText(LoginActivity.this, "Akun dengan nomor " + phone + " belum dibuat.", Toast.LENGTH_SHORT).show();
+                    loadingBar.dismiss();
                 }
             }
 

@@ -8,43 +8,39 @@
     tools:context=".MainActivity">
 
     <ImageView
-        android:id="@+id/app_logo"
+        android:id="@+id/appLogo_Main"
         android:layout_width="341dp"
         android:layout_height="290dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="135dp"
         android:src="@drawable/logo"
         />
 
     <Button
-        android:id="@+id/main_login_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/loginBtn_Main"
+        android:layout_width="341dp"
+        android:layout_height="75dp"
+        android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="80dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
+        android:layout_marginBottom="135dp"
         android:background="@drawable/buttons"
-        android:padding="20dp"
         android:textAllCaps="false"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:text="@string/login_text"
         android:textColor="@color/white"
         />
 
     <Button
-        android:id="@+id/main_join_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/main_login_btn"
-        android:layout_marginBottom="20dp"
+        android:id="@+id/joinBtnMain"
+        android:layout_width="341dp"
+        android:layout_height="75dp"
+        android:layout_above="@+id/loginBtn_Main"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="27dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
         android:background="@drawable/inputs"
-        android:padding="20dp"
         android:textAllCaps="false"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:text="@string/join_text"
         android:textColor="@color/blue_primary"
         />

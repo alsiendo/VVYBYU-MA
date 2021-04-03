@@ -1,24 +1,24 @@
 package com.example.vvybyu.Model;
 
 public class Users {
-    private String name, phone, password;
+    private String username, phone, password;
 
     public Users(){
 
     }
 
-    public Users(String name, String phone, String password) {
-        this.name = name;
+    public Users(String username, String phone, String password) {
+        this.username = username;
         this.phone = phone;
         this.password = password;
     }
 
     public String getName() {
-        return name;
+        return username;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.username = name;
     }
 
     public String getPhone() {
