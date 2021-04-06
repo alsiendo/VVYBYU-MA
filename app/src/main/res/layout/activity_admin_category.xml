@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AdminCategoryActivity">
+    
+    <TextView
+        android:id="@+id/label_AdminCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="ADD NEW PRODUCT"
+        android:textAlignment="center"
+        android:textSize="28sp"
+        android:paddingTop="40dp"
+        android:paddingBottom="10dp"
+        android:textColor="@color/blue_primary"
+        />
+    <TextView
+        android:id="@+id/labelSelect_AdminCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Select The Category "
+        android:layout_below="@id/label_AdminCategory"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:textColor="@color/blue_primary"/>
+
+    <LinearLayout
+        android:id="@+id/linearR1_AdminCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/labelSelect_AdminCategory"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:gravity="start"
+        android:layout_marginTop="40dp">
+
+        <ImageView
+            android:id="@+id/animeIcon"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/anime_icon"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"/>
+
+        <ImageView
+            android:id="@+id/gundamIcon"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/gundam_icon"
+            android:layout_margin="10dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/linearR2_AdminCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linearR1_AdminCategory"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:gravity="start">
+
+        <ImageView
+            android:id="@+id/funGoodIcon"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/fun_good_icon"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"/>
+    </LinearLayout>
+
+</RelativeLayout>
